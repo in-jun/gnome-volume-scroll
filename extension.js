@@ -53,9 +53,11 @@ export default class VolumeScrollExtension extends Extension {
         const direction = event.get_scroll_direction();
         let volume = this._sink.volume;
 
-        if (direction === Clutter.ScrollDirection.UP)
+        if (direction === Clutter.ScrollDirection.UP ||
+            direction === Clutter.ScrollDirection.RIGHT)
             volume += step;
-        else if (direction === Clutter.ScrollDirection.DOWN)
+        else if (direction === Clutter.ScrollDirection.DOWN ||
+                 direction === Clutter.ScrollDirection.LEFT)
             volume -= step;
         else
             return Clutter.EVENT_PROPAGATE;
