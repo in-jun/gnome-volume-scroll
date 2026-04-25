@@ -1,0 +1,6 @@
+{
+    "uuid": "volume-scroll@local",
+    "name": "Volume Scroll (local)",
+    "description": "Scroll anywhere on top bar to change volume",
+    "shell-version": ["45", "46", "47", "48", "49", "50"]
+}
