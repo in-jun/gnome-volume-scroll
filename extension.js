@@ -6,6 +6,13 @@ import * as Volume from 'resource:///org/gnome/shell/ui/status/volume.js';
 
 const VOLUME_STEP_FRACTION = 0.05;
 
+const SCROLL_SIGN = new Map([
+    [Clutter.ScrollDirection.UP, 1],
+    [Clutter.ScrollDirection.RIGHT, 1],
+    [Clutter.ScrollDirection.DOWN, -1],
+    [Clutter.ScrollDirection.LEFT, -1],
+]);
+
 function iconNameForLevel(level) {
     if (level <= 0) return 'audio-volume-muted-symbolic';
     if (level < 1 / 3) return 'audio-volume-low-symbolic';
@@ -49,19 +56,11 @@ export default class VolumeScrollExtension extends Extension {
         if (!this._sink)
             return Clutter.EVENT_PROPAGATE;
 
-        const step = VOLUME_STEP_FRACTION * this._maxVolume;
-        const direction = event.get_scroll_direction();
-        let volume = this._sink.volume;
-
-        if (direction === Clutter.ScrollDirection.UP ||
-            direction === Clutter.ScrollDirection.RIGHT)
-            volume += step;
-        else if (direction === Clutter.ScrollDirection.DOWN ||
-                 direction === Clutter.ScrollDirection.LEFT)
-            volume -= step;
-        else
+        const sign = SCROLL_SIGN.get(event.get_scroll_direction());
+        if (!sign)
             return Clutter.EVENT_PROPAGATE;
 
+        let volume = this._sink.volume + sign * VOLUME_STEP_FRACTION * this._maxVolume;
         volume = Math.max(0, Math.min(volume, this._maxVolume));
         this._sink.volume = volume;
         this._sink.push_volume();
