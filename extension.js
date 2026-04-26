@@ -7,10 +7,10 @@ import * as Volume from 'resource:///org/gnome/shell/ui/status/volume.js';
 const VOLUME_STEP_FRACTION = 0.05;
 
 const SCROLL_SIGN = new Map([
-    [Clutter.ScrollDirection.UP, 1],
-    [Clutter.ScrollDirection.RIGHT, 1],
-    [Clutter.ScrollDirection.DOWN, -1],
-    [Clutter.ScrollDirection.LEFT, -1],
+    [Clutter.ScrollDirection.UP, -1],
+    [Clutter.ScrollDirection.RIGHT, -1],
+    [Clutter.ScrollDirection.DOWN, 1],
+    [Clutter.ScrollDirection.LEFT, 1],
 ]);
 
 function iconNameForLevel(level) {
