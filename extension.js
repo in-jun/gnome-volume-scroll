@@ -65,6 +65,10 @@ export default class VolumeScrollExtension extends Extension {
         this._sink.volume = volume;
         this._sink.push_volume();
 
+        const muted = volume === 0;
+        if (this._sink.is_muted !== muted)
+            this._sink.change_is_muted(muted);
+
         showVolumeOsd(volume / this._maxVolume);
         return Clutter.EVENT_STOP;
     }

@@ -1,6 +1,6 @@
 # gnome-volume-scroll
 
-GNOME Shell extension that adjusts volume by scrolling anywhere on the top bar. Each scroll tick changes volume by 5% and shows the standard OSD indicator.
+GNOME Shell extension that adjusts volume by scrolling anywhere on the top bar. Each scroll tick changes volume by 5% and shows the standard OSD indicator. Mute follows the volume as in the system slider: reaching 0% mutes, and any level above 0% unmutes.
 
 ## Install
 
